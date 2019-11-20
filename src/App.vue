@@ -11,18 +11,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import cards from './cards'
 
 export default {
   name: 'app',
-  data() {
-    return {
-      cards,
-      currentCard: cards.babyIsBorn,
-    }
-  },
   computed: {
-    ...mapState(['energy', 'money', 'joy', 'gender']),
+    ...mapState(['currentCard', 'energy', 'money', 'joy', 'gender']),
     header() {
       return this.currentCard.name
     },
