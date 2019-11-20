@@ -10,6 +10,7 @@ const between0And100 = amount => Math.max(0, Math.min(100, amount))
 
 export default new Vuex.Store({
   state: {
+    day: 1,
     currentCard: cards.babyIsBorn,
     playedUniqueCardIds: new Set(['babyIsBorn']),
     energy: 100,
@@ -17,10 +18,13 @@ export default new Vuex.Store({
     joy: 100,
     gender: null,
   },
-  mutations: {
-    nextCard(state) {
+  mutations: {},
+  actions: {
+    nextCard({ state, dispatch }) {
+      dispatch({ type: 'incrementDay' })
+
       if (state.currentCard.unique) {
-        state.playedUniqueCardIds.add(state.currentCard.id)
+        dispatch({ type: 'markCardAsPlayed', card: state.currentCard })
       }
 
       const playableCardIds = Object.keys(cards).filter(
@@ -28,19 +32,24 @@ export default new Vuex.Store({
       )
       state.currentCard = cards[pickRandom(playableCardIds)]
     },
-    setGender(state, { gender }) {
+    incrementDay({ state }) {
+      state.day += 1
+    },
+    markCardAsPlayed({ state }, { card }) {
+      state.playedUniqueCardIds.add(card.id)
+    },
+    setGender({ state }, { gender }) {
       state.gender = gender
     },
-    updateEnergy(state, { amount }) {
+    updateEnergy({ state }, { amount }) {
       state.energy = between0And100(state.energy + amount)
     },
-    updateMoney(state, { amount }) {
+    updateMoney({ state }, { amount }) {
       state.money = between0And100(state.money + amount)
     },
-    updateJoy(state, { amount }) {
+    updateJoy({ state }, { amount }) {
       state.joy = between0And100(state.joy + amount)
     },
   },
-  actions: {},
   modules: {},
 })

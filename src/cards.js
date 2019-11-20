@@ -7,14 +7,11 @@ export default {
     choices: [
       {
         name: 'Jongetje',
-        mutations: [{ type: 'setGender', gender: 'boy' }, { type: 'nextCard' }],
+        actions: [{ type: 'setGender', gender: 'boy' }, { type: 'nextCard' }],
       },
       {
         name: 'Meisje',
-        mutations: [
-          { type: 'setGender', gender: 'girl' },
-          { type: 'nextCard' },
-        ],
+        actions: [{ type: 'setGender', gender: 'girl' }, { type: 'nextCard' }],
       },
     ],
   },
@@ -26,11 +23,11 @@ export default {
     choices: [
       {
         name: 'left',
-        mutations: [{ type: 'nextCard' }],
+        actions: [{ type: 'nextCard' }],
       },
       {
         name: 'right',
-        mutations: [{ type: 'nextCard' }],
+        actions: [{ type: 'nextCard' }],
       },
     ],
   },
@@ -42,11 +39,11 @@ export default {
     choices: [
       {
         name: 'left',
-        mutations: [{ type: 'nextCard' }],
+        actions: [{ type: 'nextCard' }],
       },
       {
         name: 'right',
-        mutations: [{ type: 'nextCard' }],
+        actions: [{ type: 'nextCard' }],
       },
     ],
   },
@@ -57,11 +54,11 @@ export default {
     choices: [
       {
         name: 'left',
-        mutations: [{ type: 'nextCard' }],
+        actions: [{ type: 'nextCard' }],
       },
       {
         name: 'right',
-        mutations: [{ type: 'nextCard' }],
+        actions: [{ type: 'nextCard' }],
       },
     ],
   },

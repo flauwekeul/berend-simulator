@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div>Dag {{ day }}</div>
     <div>Energie: {{ energy }} Geld: {{ money }} Geluk: {{ joy }}</div>
     <div>Gender: {{ gender }}</div>
     <h1>{{ header }}</h1>
@@ -15,7 +16,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'app',
   computed: {
-    ...mapState(['currentCard', 'energy', 'money', 'joy', 'gender']),
+    ...mapState(['day', 'currentCard', 'energy', 'money', 'joy', 'gender']),
     header() {
       return this.currentCard.name
     },
@@ -31,13 +32,13 @@ export default {
   },
   methods: {
     left() {
-      this.leftChoice.mutations.forEach(mutation => {
-        this.$store.commit(mutation)
+      this.leftChoice.actions.forEach(action => {
+        this.$store.dispatch(action)
       })
     },
     right() {
-      this.rightChoice.mutations.forEach(mutation => {
-        this.$store.commit(mutation)
+      this.rightChoice.actions.forEach(action => {
+        this.$store.dispatch(action)
       })
     },
   },
