@@ -10,10 +10,20 @@ export default new Vuex.Store({
     energy: 100,
     money: 50,
     joy: 100,
+    gender: null,
   },
   mutations: {
-    updateStat(state, { stat, amount }) {
-      state[stat] = between0And100(state[stat] + amount)
+    setGender(state, { gender }) {
+      state.gender = gender
+    },
+    updateEnergy(state, { amount }) {
+      state.energy = between0And100(state.energy + amount)
+    },
+    updateMoney(state, { amount }) {
+      state.money = between0And100(state.money + amount)
+    },
+    updateJoy(state, { amount }) {
+      state.joy = between0And100(state.joy + amount)
     },
   },
   actions: {},

@@ -1,13 +1,53 @@
 <template>
-  <div>Energie: {{ energy }} Geld: {{ money }} Geluk: {{ joy }}</div>
+  <div>
+    <div>Energie: {{ energy }} Geld: {{ money }} Geluk: {{ joy }}</div>
+    <div>Gender: {{ gender }}</div>
+    <h1>{{ header }}</h1>
+    <button type="button" @click="left">{{ leftChoice.name }}</button>
+    <p>{{ description }}</p>
+    <button type="button" @click="right">{{ rightChoice.name }}</button>
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import cards from './cards'
 
 export default {
   name: 'app',
-  computed: mapState(['energy', 'money', 'joy']),
+  data() {
+    return {
+      cards,
+      currentCard: cards.babyIsBorn,
+    }
+  },
+  computed: {
+    ...mapState(['energy', 'money', 'joy', 'gender']),
+    header() {
+      return this.currentCard.name
+    },
+    description() {
+      return this.currentCard.description
+    },
+    leftChoice() {
+      return this.currentCard.choices[0]
+    },
+    rightChoice() {
+      return this.currentCard.choices[1]
+    },
+  },
+  methods: {
+    left() {
+      this.leftChoice.mutations.forEach(mutation => {
+        this.$store.commit(mutation)
+      })
+    },
+    right() {
+      this.rightChoice.mutations.forEach(mutation => {
+        this.$store.commit(mutation)
+      })
+    },
+  },
 }
 </script>
 
