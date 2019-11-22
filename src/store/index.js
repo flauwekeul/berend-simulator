@@ -20,7 +20,7 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {
-    nextCard({ state, dispatch }) {
+    randomCard({ state, dispatch }) {
       dispatch({ type: 'incrementDay' })
 
       if (state.currentCard.unique) {
@@ -31,6 +31,9 @@ export default new Vuex.Store({
         id => !state.playedUniqueCardIds.has(id),
       )
       state.currentCard = cards[pickRandom(playableCardIds)]
+    },
+    pickCard({ state }, { id }) {
+      state.currentCard = cards[id]
     },
     incrementDay({ state }) {
       state.day += 1
