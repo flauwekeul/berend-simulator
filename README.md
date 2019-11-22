@@ -1,4 +1,4 @@
-# je-krijgt-er-zoveel-voor-terug
+# berend-simulator
 
 ## Project setup
 ```
