@@ -5,28 +5,37 @@ import { between0And100, pickRandom } from '../utils'
 
 Vue.use(Vuex)
 
+const randomPlayableCard = (playedUniqueCardIds = new Set()) => {
+  const playableCardIds = Object.keys(cards).filter(
+    id => !playedUniqueCardIds.has(id),
+  )
+  return cards[pickRandom(playableCardIds)]
+}
+
 export default new Vuex.Store({
   state: {
     day: 1,
-    currentCard: cards.ajaxWins, // todo: random card?
-    playedUniqueCardIds: new Set(['babyIsBorn']),
+    currentCard: randomPlayableCard(),
+    playedUniqueCardIds: new Set(),
     energy: 70,
-    money: 20,
+    money: 70,
     joy: 70,
   },
   mutations: {},
   actions: {
-    randomCard({ state, dispatch }) {
+    // todo: move currentCard to end of cards list and pick random card weighted from start
+    // e.g.: https://stackoverflow.com/a/44196624/660260
+    nextCard({ state, dispatch }) {
       dispatch({ type: 'incrementDay' })
 
       if (state.currentCard.unique) {
         dispatch({ type: 'markCardAsPlayed', card: state.currentCard })
       }
 
-      const playableCardIds = Object.keys(cards).filter(
-        id => !state.playedUniqueCardIds.has(id),
-      )
-      state.currentCard = cards[pickRandom(playableCardIds)]
+      dispatch({ type: 'randomCard' })
+    },
+    randomCard({ state }) {
+      state.currentCard = randomPlayableCard(state.playedUniqueCardIds)
     },
     pickCard({ state }, { id }) {
       state.currentCard = cards[id]
