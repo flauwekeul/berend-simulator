@@ -1,71 +1,25 @@
+import { randomNumber } from './utils'
+
 export default {
-  babyIsBorn: {
-    id: 'babyIsBorn',
-    unique: true,
-    name: 'Gefeliciteerd!',
-    description: 'Het is een…',
-    // todo: random 'jongetje/meisje' en 'transgender/non-binair/overig'
+  ajaxWins: {
+    id: 'ajaxWins',
+    name: 'Ajax wint!',
+    description: () => {
+      const win = randomNumber(1, 5)
+      const loss = randomNumber(0, win - 1)
+      return `Met ${win}-${loss}!`
+    },
     choices: [
       {
-        name: 'Jongetje',
+        name: 'Ok dan!',
+        actions: [{ type: 'updateStats', joy: 15 }, { type: 'randomCard' }],
+      },
+      {
+        name: 'Yes, zuipe!',
         actions: [
-          { type: 'setGender', gender: 'boy' },
-          { type: 'pickCard', id: 'firstDay' },
+          { type: 'updateStats', joy: 10, money: -5 },
+          { type: 'randomCard' },
         ],
-      },
-      {
-        name: 'Meisje',
-        actions: [
-          { type: 'setGender', gender: 'girl' },
-          { type: 'pickCard', id: 'firstDay' },
-        ],
-      },
-    ],
-  },
-  firstDay: {
-    id: 'firstDay',
-    unique: true,
-    name: 'Dag 1',
-    description: '',
-    choices: [
-      {
-        name: 'left',
-        actions: [{ type: 'randomCard' }],
-      },
-      {
-        name: 'right',
-        actions: [{ type: 'randomCard' }],
-      },
-    ],
-  },
-  b: {
-    id: 'b',
-    unique: true,
-    name: 'B',
-    description: '',
-    choices: [
-      {
-        name: 'left',
-        actions: [{ type: 'randomCard' }],
-      },
-      {
-        name: 'right',
-        actions: [{ type: 'randomCard' }],
-      },
-    ],
-  },
-  c: {
-    id: 'c',
-    name: 'C',
-    description: '',
-    choices: [
-      {
-        name: 'left',
-        actions: [{ type: 'randomCard' }],
-      },
-      {
-        name: 'right',
-        actions: [{ type: 'randomCard' }],
       },
     ],
   },

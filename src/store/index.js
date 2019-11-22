@@ -1,21 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import cards from '../cards'
+import { between0And100, pickRandom } from '../utils'
 
 Vue.use(Vuex)
-
-const pickRandom = array => array[Math.floor(Math.random() * array.length)]
-
-const between0And100 = amount => Math.max(0, Math.min(100, amount))
 
 export default new Vuex.Store({
   state: {
     day: 1,
-    currentCard: cards.babyIsBorn,
+    currentCard: cards.ajaxWins, // todo: random card?
     playedUniqueCardIds: new Set(['babyIsBorn']),
-    energy: 100,
-    money: 50,
-    joy: 100,
+    energy: 70,
+    money: 20,
+    joy: 70,
   },
   mutations: {},
   actions: {
@@ -40,14 +37,10 @@ export default new Vuex.Store({
     markCardAsPlayed({ state }, { card }) {
       state.playedUniqueCardIds.add(card.id)
     },
-    updateEnergy({ state }, { amount }) {
-      state.energy = between0And100(state.energy + amount)
-    },
-    updateMoney({ state }, { amount }) {
-      state.money = between0And100(state.money + amount)
-    },
-    updateJoy({ state }, { amount }) {
-      state.joy = between0And100(state.joy + amount)
+    updateStats({ state }, { energy = 0, money = 0, joy = 0 }) {
+      state.energy = between0And100(state.energy + energy)
+      state.money = between0And100(state.money + money)
+      state.joy = between0And100(state.joy + joy)
     },
   },
   modules: {},

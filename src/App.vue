@@ -20,7 +20,8 @@ export default {
       return this.currentCard.name
     },
     description() {
-      return this.currentCard.description
+      const { description } = this.currentCard
+      return typeof description === 'function' ? description() : description
     },
     leftChoice() {
       return this.currentCard.choices[0]
