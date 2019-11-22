@@ -16,7 +16,6 @@ export default new Vuex.Store({
     energy: 100,
     money: 50,
     joy: 100,
-    gender: null,
   },
   mutations: {},
   actions: {
@@ -40,9 +39,6 @@ export default new Vuex.Store({
     },
     markCardAsPlayed({ state }, { card }) {
       state.playedUniqueCardIds.add(card.id)
-    },
-    setGender({ state }, { gender }) {
-      state.gender = gender
     },
     updateEnergy({ state }, { amount }) {
       state.energy = between0And100(state.energy + amount)

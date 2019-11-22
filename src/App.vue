@@ -2,7 +2,6 @@
   <div>
     <div>Dag {{ day }}</div>
     <div>Energie: {{ energy }} Geld: {{ money }} Geluk: {{ joy }}</div>
-    <div>Gender: {{ gender }}</div>
     <h1>{{ header }}</h1>
     <button type="button" @click="left">{{ leftChoice.name }}</button>
     <p>{{ description }}</p>
@@ -16,7 +15,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'app',
   computed: {
-    ...mapState(['day', 'currentCard', 'energy', 'money', 'joy', 'gender']),
+    ...mapState(['day', 'currentCard', 'energy', 'money', 'joy']),
     header() {
       return this.currentCard.name
     },
