@@ -1,9 +1,5 @@
-import { pickRandom, randomNumber } from './utils'
-
-// orders of magnitude in which a stat (energy, money, joy) can change
-const SMALL = 10
-const MEDIUM = 20
-const LARGE = 30
+import { pickRandom, randomNumber } from '../utils'
+import { LARGE, MEDIUM, SMALL } from './stat-deltas'
 
 const soccerTeams = [
   'Feyenoord',
@@ -19,86 +15,8 @@ const soccerTeams = [
   'ADO Den Haag',
 ]
 
-// todo: use card types to filter: common, terminal, series, story
-export default {
-  gameOver: {
-    id: 'gameOver',
-    unique: true,
-    description: 'Helaas, je hebt verloren.',
-    choices: [
-      {
-        name: 'Opnieuw',
-        // fixme: implement startOver
-        actions: [{ type: 'startOver' }],
-      },
-      {
-        name: 'Nogmaals',
-        actions: [{ type: 'startOver' }],
-      },
-    ],
-  },
-  tinder1: {
-    id: 'tinder1',
-    unique: true,
-    description: 'Klara, 46 jaar, houdt van puzzelen en zitten.',
-    choices: [
-      {
-        name: 'Nee',
-        actions: [{ type: 'nextCard', id: 'tinder2' }],
-      },
-      {
-        name: 'Ja',
-        actions: [{ type: 'nextCard', id: 'gameOver' }],
-      },
-    ],
-  },
-  tinder2: {
-    id: 'tinder2',
-    unique: true,
-    description: 'Simone, 23 jaar, ze lijkt niet heel slim.',
-    choices: [
-      {
-        name: 'Nee',
-        actions: [{ type: 'nextCard', id: 'tinder3' }],
-      },
-      {
-        name: 'Ja',
-        actions: [{ type: 'nextCard', id: 'gameOver' }],
-      },
-    ],
-  },
-  tinder3: {
-    id: 'tinder3',
-    unique: true,
-    description: 'Christine, 24 jaar en echt heel erg leuk.',
-    choices: [
-      {
-        name: 'Nee',
-        actions: [{ type: 'nextCard', id: 'gameOver' }],
-      },
-      {
-        name: 'Ja!',
-        actions: [{ type: 'nextCard', id: 'inLove' }],
-      },
-    ],
-  },
-  inLove: {
-    id: 'inLove',
-    unique: true,
-    // todo: opmerkelijke gebeurtenis vinden?
-    description: 'Een paar dates verder en jullie zijn een setje.',
-    choices: [
-      {
-        name: 'Yes!',
-        actions: [{ type: 'updateStats', joy: LARGE }, { type: 'nextCard' }],
-      },
-      {
-        name: 'Ok dan!',
-        actions: [{ type: 'updateStats', joy: LARGE }, { type: 'nextCard' }],
-      },
-    ],
-  },
-  ajaxWins: {
+export default [
+  {
     id: 'ajaxWins',
     description: () => {
       const win = randomNumber(1, 5)
@@ -119,7 +37,7 @@ export default {
       },
     ],
   },
-  ajaxLoses: {
+  {
     id: 'ajaxLoses',
     description: () => `Ajax verliest van ${pickRandom(soccerTeams)}…`,
     choices: [
@@ -136,7 +54,7 @@ export default {
       },
     ],
   },
-  dontFeelLikeWorking: {
+  {
     id: 'dontFeelLikeWorking',
     description: 'Pfff, geen zin om te werken vandaag…',
     choices: [
@@ -156,8 +74,8 @@ export default {
       },
     ],
   },
-  tiesCalls: {
-    id: 'tiesCalls',
+  {
+    id: 'TiesCalls',
     description:
       'Ties belt laat vanuit Israël. Hij heeft een luisterend oor nodig.',
     choices: [
@@ -174,7 +92,7 @@ export default {
       },
     ],
   },
-  carBrokeDown: {
+  {
     id: 'carBrokeDown',
     description: 'Verdomme, de auto start niet.',
     choices: [
@@ -194,7 +112,7 @@ export default {
       },
     ],
   },
-  nightWithChristine: {
+  {
     id: 'nightWithChristine',
     description: 'Vanavond heb je een avond met Christine…',
     choices: [
@@ -214,7 +132,7 @@ export default {
       },
     ],
   },
-  playSquashWithChristine: {
+  {
     id: 'playSquashWithChristine',
     description: 'Je gaat squashen met Christine.',
     choices: [
@@ -231,7 +149,7 @@ export default {
       },
     ],
   },
-  running: {
+  {
     id: 'running',
     description: 'Je wilt gaan hardlopen, maar het regent.',
     choices: [
@@ -251,7 +169,7 @@ export default {
       },
     ],
   },
-  friendsBirthday: {
+  {
     id: 'friendsBirthday',
     description: () => {
       const person = pickRandom([
@@ -283,7 +201,7 @@ export default {
       },
     ],
   },
-  specialtyBeer: {
+  {
     id: 'specialtyBeer',
     description: 'Oeh, lekker speciaalbiertje. Welke neem je?',
     choices: [
@@ -303,7 +221,7 @@ export default {
       },
     ],
   },
-  defqon: {
+  {
     id: 'defqon',
     description: 'Defqon komt eraan. Maar is dat wel verstandig?',
     choices: [
@@ -328,7 +246,7 @@ export default {
       },
     ],
   },
-  birthday: {
+  {
     id: 'birthday',
     description: 'Bijna jarig! Wanneer vier je het?',
     choices: [
@@ -348,4 +266,4 @@ export default {
       },
     ],
   },
-}
+]

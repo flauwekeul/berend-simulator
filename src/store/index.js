@@ -1,21 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import cards from '../cards'
-import { between0And100, pickRandom } from '../utils'
+import * as cards from '../cards'
+import { between0And100 } from '../utils'
 
 Vue.use(Vuex)
-
-const randomPlayableCard = (playedUniqueCardIds = new Set()) => {
-  const playableCardIds = Object.keys(cards).filter(
-    id => !playedUniqueCardIds.has(id),
-  )
-  return cards[pickRandom(playableCardIds)]
-}
 
 export default new Vuex.Store({
   state: {
     day: 1,
-    currentCard: cards.tinder1,
+    currentCard: cards.START,
     playedUniqueCardIds: new Set(),
     energy: 70,
     money: 70,
@@ -26,6 +19,11 @@ export default new Vuex.Store({
     // todo: move currentCard to end of cards list and pick random card weighted from start
     // e.g.: https://stackoverflow.com/a/44196624/660260
     nextCard({ state, dispatch }, { id }) {
+      if (state.energy === 0 || state.money === 0 || state.joy === 0) {
+        state.currentCard = cards.byId('gameOver')
+        return
+      }
+
       dispatch({ type: 'incrementDay' })
 
       if (state.currentCard.unique) {
@@ -33,9 +31,8 @@ export default new Vuex.Store({
       }
 
       state.currentCard = id
-        ? cards[id]
-        : randomPlayableCard(state.playedUniqueCardIds)
-      console.log(state.currentCard.id)
+        ? cards.byId(id)
+        : cards.random(cards.playable(state.playedUniqueCardIds))
     },
     incrementDay({ state }) {
       state.day += 1
