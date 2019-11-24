@@ -9,7 +9,7 @@ import terminal from './terminal'
 
 export const ALL = [...common, ...serial.flat(), ...story, ...terminal]
 
-export const START = serial[0][0]
+export const START = story.find(card => card.id === 'startDating')
 
 export const FIRST_OF_EACH_SERIE = serial.map(series => series[0])
 
