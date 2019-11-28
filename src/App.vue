@@ -1,10 +1,7 @@
 <template>
   <main class="main">
     <div class="stats">
-      <div class="day">
-        <span class="day__label">Dag</span>
-        <span class="day__value">{{ day }}</span>
-      </div>
+      <Day :value="day" />
       <Stat name="energy" :value="energy" class="stat" />
       <Stat name="money" :value="money" class="stat" />
       <Stat name="joy" :value="joy" class="stat" />
@@ -18,10 +15,11 @@
 <script>
 import { mapState } from 'vuex'
 import Stat from './components/Stat'
+import Day from './components/Day'
 
 export default {
   name: 'app',
-  components: { Stat },
+  components: { Stat, Day },
   computed: {
     ...mapState(['day', 'currentCard', 'energy', 'money', 'joy']),
     description() {
@@ -87,19 +85,5 @@ body {
 .stat {
   flex: 1;
   height: 10vmin;
-}
-
-.day {
-  width: 25%;
-}
-.day__label {
-  font-size: 3vmin;
-  margin-right: 1vmin;
-}
-.day__value {
-  font-family: 'Lobster Two', cursive;
-  font-size: 13vmin;
-  color: var(--color-secondary);
-  line-height: 1;
 }
 </style>
