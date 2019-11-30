@@ -7,7 +7,9 @@
       <Stat name="joy" :value="joy" class="stat" />
     </div>
     <button type="button" @click="left">{{ leftChoice.name }}</button>
-    <p>{{ description }}</p>
+    <div class="cards">
+      <Card>{{ description }}</Card>
+    </div>
     <button type="button" @click="right">{{ rightChoice.name }}</button>
   </main>
 </template>
@@ -16,10 +18,11 @@
 import { mapState } from 'vuex'
 import Stat from './components/Stat'
 import Day from './components/Day'
+import Card from './components/Card'
 
 export default {
   name: 'app',
-  components: { Stat, Day },
+  components: { Stat, Day, Card },
   computed: {
     ...mapState(['day', 'currentCard', 'energy', 'money', 'joy']),
     description() {
@@ -53,22 +56,34 @@ export default {
   --color-primary: rgba(238, 108, 77, 1);
   --color-secondary: rgb(106, 199, 253);
 
-  --color-light: rgb(225, 254, 255);
+  --color-lightest: rgb(225, 254, 255);
+  --color-light: rgb(186, 207, 207);
   --color-grey: rgba(61, 90, 128, 1);
   --color-dark: rgb(32, 38, 48);
+  --color-shadow: rgba(255, 255, 255, 0.08);
+
+  --spacing-small: 3vmin;
+  --spacing-large: 5vmin;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0 5vmin;
+  margin: 0 var(--spacing-large);
   background-color: var(--color-dark);
   font-family: 'Rubik', sans-serif;
-  font-size: 4vmin;
+  font-size: 3vmin;
   line-height: 1.4;
-  color: var(--color-light);
+  color: var(--color-lightest);
 }
 
 .main {
-  max-width: 90vmin;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 75vmin;
   margin-left: auto;
   margin-right: auto;
 }
@@ -77,13 +92,21 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: baseline;
-  padding: 1vmin 4vmin;
-  background-color: rgba(255, 255, 255, 0.08);
+  padding: 1vmin var(--spacing-small);
+  background-color: var(--color-shadow);
   border-radius: 0 0 1vmin 1vmin;
 }
 
 .stat {
   flex: 1;
   height: 10vmin;
+}
+
+.cards {
+  flex: 1;
+  margin-top: var(--spacing-small);
+  background-color: var(--color-shadow);
+  border-radius: 1vmin 1vmin 0 0;
+  overflow: hidden;
 }
 </style>
