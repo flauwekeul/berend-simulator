@@ -7,17 +7,21 @@ import terminal from './terminal'
 
 // public API
 
-export const ALL = [...common, ...serial.flat(), ...story, ...terminal]
+export const clone = card => ({ ...card })
 
-export const START = story.find(card => card.id === 'startDating')
+export const ALL = [...common, ...serial.flat(), ...story, ...terminal].map(
+  clone,
+)
 
-export const FIRST_OF_EACH_SERIE = serial.map(series => series[0])
+export const START = clone(story.find(card => card.id === 'startDating'))
 
-export const DRAWABLE = [...common, ...FIRST_OF_EACH_SERIE, ...story]
+export const FIRST_OF_EACH_SERIE = serial.map(series => clone(series[0]))
 
-export const byId = id => ALL.find(card => card.id === id)
+export const DRAWABLE = [...common, ...FIRST_OF_EACH_SERIE, ...story].map(clone)
+
+export const byId = id => clone(ALL.find(card => card.id === id))
 
 export const playable = playedUniqueCardIds =>
-  DRAWABLE.filter(card => !playedUniqueCardIds.has(card.id))
+  DRAWABLE.filter(card => !playedUniqueCardIds.has(card.id)).map(clone)
 
-export const random = cards => pickRandom(cards)
+export const random = cards => clone(pickRandom(cards))

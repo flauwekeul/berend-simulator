@@ -2,6 +2,7 @@
 export default [
   {
     id: 'startDating',
+    unique: true,
     description: 'Het is 2015 (?), Berend is nog single en zit op Tinder.',
     choices: [
       {
