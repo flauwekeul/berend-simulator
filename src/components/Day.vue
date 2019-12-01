@@ -21,7 +21,7 @@ export default {
   margin-right: 1vmin;
 }
 .day__value {
-  font-family: 'Lobster Two', cursive;
+  font-family: var(--font-stack-cursive);
   font-size: 13vmin;
   color: var(--color-light);
   line-height: 1;

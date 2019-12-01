@@ -9,7 +9,7 @@
       <use
         class="icon__bar"
         xlink:href="#icon-lightning"
-        :style="{ clipPath: `inset(${value}% 0 0 0)` }"
+        :style="{ clipPath }"
       />
     </svg>
     <svg
@@ -18,19 +18,11 @@
       v-if="name === 'money'"
     >
       <use class="icon__background" xlink:href="#icon-euro" />
-      <use
-        class="icon__bar"
-        xlink:href="#icon-euro"
-        :style="{ clipPath: `inset(${value}% 0 0 0)` }"
-      />
+      <use class="icon__bar" xlink:href="#icon-euro" :style="{ clipPath }" />
     </svg>
     <svg class="icon" xmlns="http://www.w3.org/2000/svg" v-if="name === 'joy'">
       <use class="icon__background" xlink:href="#icon-heart" />
-      <use
-        class="icon__bar"
-        xlink:href="#icon-heart"
-        :style="{ clipPath: `inset(${value}% 0 0 0)` }"
-      />
+      <use class="icon__bar" xlink:href="#icon-heart" :style="{ clipPath }" />
     </svg>
   </div>
 </template>
@@ -38,6 +30,11 @@
 <script>
 export default {
   props: { name: String, value: Number },
+  computed: {
+    clipPath() {
+      return `inset(${100 - this.value}% 0 0 0)`
+    },
+  },
 }
 </script>
 
