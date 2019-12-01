@@ -5,15 +5,17 @@ import { between0And100 } from '../utils'
 
 Vue.use(Vuex)
 
+const createState = () => ({
+  day: 1,
+  currentCard: cards.START,
+  playedUniqueCardIds: new Set(),
+  energy: 70,
+  money: 70,
+  joy: 40,
+})
+
 export default new Vuex.Store({
-  state: {
-    day: 1,
-    currentCard: cards.START,
-    playedUniqueCardIds: new Set(),
-    energy: 70,
-    money: 70,
-    joy: 40,
-  },
+  state: createState(),
   mutations: {},
   actions: {
     // todo: move currentCard to end of cards list and pick random card weighted from start
@@ -33,6 +35,9 @@ export default new Vuex.Store({
       state.currentCard = id
         ? cards.byId(id)
         : cards.random(cards.playable(state.playedUniqueCardIds))
+    },
+    startOver() {
+      this.replaceState(createState())
     },
     incrementDay({ state }) {
       state.day += 1
