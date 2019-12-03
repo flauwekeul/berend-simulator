@@ -13,15 +13,10 @@ export const ALL = [...common, ...serial.flat(), ...story, ...terminal].map(
   clone,
 )
 
+export const DRAWABLE = [...common, ...serial.flat(), ...story].map(clone)
+
 export const START = clone(story.find(card => card.id === 'startDating'))
 
-export const FIRST_OF_EACH_SERIE = serial.map(series => clone(series[0]))
-
-export const DRAWABLE = [...common, ...FIRST_OF_EACH_SERIE, ...story].map(clone)
-
 export const byId = id => clone(ALL.find(card => card.id === id))
-
-export const playable = playedUniqueCardIds =>
-  DRAWABLE.filter(card => !playedUniqueCardIds.has(card.id)).map(clone)
 
 export const random = cards => clone(pickRandom(cards))
