@@ -7,11 +7,21 @@
       <Stat name="joy" :value="joy" class="stat" />
     </div>
     <div class="cards">
-      <button type="button" class="choose-left" @click="left">
+      <button
+        type="button"
+        class="choose-left"
+        @mousemove="hoverOverChoice(leftChoice)"
+        @click="left"
+      >
         {{ leftChoice.name }}
       </button>
       <Card :card="currentCard">{{ description }}</Card>
-      <button type="button" class="choose-right" @click="right">
+      <button
+        type="button"
+        class="choose-right"
+        @mousemove="hoverOverChoice(rightChoice)"
+        @click="right"
+      >
         {{ rightChoice.name }}
       </button>
     </div>
@@ -50,6 +60,15 @@ export default {
       this.rightChoice.actions.forEach(action => {
         this.$store.dispatch(action)
       })
+    },
+    hoverOverChoice({ actions }) {
+      const updateStatsAction = actions.find(
+        action => action.type === 'updateStats',
+      )
+      if (updateStatsAction) {
+        const { energy, money, joy } = updateStatsAction
+        this.$store.dispatch({ type: 'showStatChanges', energy, money, joy })
+      }
     },
   },
 }
@@ -147,6 +166,7 @@ button:hover {
 .stat {
   flex: 1;
   height: 10vmin;
+  position: relative;
 }
 
 .cards {
