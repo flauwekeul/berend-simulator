@@ -9,11 +9,15 @@ import terminal from './terminal'
 
 export const clone = card => ({ ...card })
 
+export const DRAWABLE = [
+  ...common,
+  ...serial.map(series => series[0]),
+  ...story,
+].map(clone)
+
 export const ALL = [...common, ...serial.flat(), ...story, ...terminal].map(
   clone,
 )
-
-export const DRAWABLE = [...common, ...serial.flat(), ...story].map(clone)
 
 export const START = clone(story.find(card => card.id === 'startDating'))
 

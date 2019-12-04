@@ -9,9 +9,9 @@ const createState = () => ({
   day: 1,
   cards: shuffle(cards.DRAWABLE),
   currentCard: cards.START,
-  energy: 70,
-  money: 70,
-  joy: 40,
+  energy: 50,
+  money: 50,
+  joy: 20,
   statChanges: null,
 })
 
@@ -43,10 +43,9 @@ export default new Vuex.Store({
         dispatch({ type: 'removeCardFromDeck', card: state.currentCard })
       }
 
-      const first3PlayableCards = state.cards.slice(0, 3)
       const currentCard = id
         ? cards.byId(id)
-        : cards.random(first3PlayableCards)
+        : cards.random(state.cards.slice(0, 3))
       commit('setCurrentCard', currentCard)
     },
     startOver() {
