@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as cards from '../cards'
-import { between0And100, index, move, shuffle } from '../utils'
+import { between0And100, index, move, randomNumber, shuffle } from '../utils'
 
 Vue.use(Vuex)
 
@@ -37,8 +37,6 @@ export default new Vuex.Store({
         return commit('setCurrentCard', cards.byId('gameOver'))
       }
 
-      dispatch({ type: 'incrementDay' })
-
       if (state.currentCard.unique) {
         dispatch({ type: 'removeCardFromDeck', card: state.currentCard })
       }
@@ -51,8 +49,8 @@ export default new Vuex.Store({
     startOver() {
       this.replaceState(createState())
     },
-    incrementDay({ state }) {
-      state.day += 1
+    incrementDay({ state }, { amount = randomNumber(5, 10) }) {
+      state.day += amount
     },
     removeCardFromDeck({ state }, { card }) {
       const cardIndex = index(state.cards, card.id)

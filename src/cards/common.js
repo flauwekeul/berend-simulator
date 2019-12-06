@@ -26,12 +26,17 @@ export default [
     choices: [
       {
         name: 'Ok dan!',
-        actions: [{ type: 'updateStats', joy: SMALL }, { type: 'nextCard' }],
+        actions: [
+          { type: 'updateStats', joy: SMALL },
+          { type: 'incrementDay' },
+          { type: 'nextCard' },
+        ],
       },
       {
         name: 'Yes, zuipe!',
         actions: [
           { type: 'updateStats', joy: MEDIUM, money: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -43,12 +48,17 @@ export default [
     choices: [
       {
         name: 'Klote',
-        actions: [{ type: 'updateStats', joy: -MEDIUM }, { type: 'nextCard' }],
+        actions: [
+          { type: 'updateStats', joy: -MEDIUM },
+          { type: 'incrementDay' },
+          { type: 'nextCard' },
+        ],
       },
       {
         name: 'Ok, zuipe!',
         actions: [
           { type: 'updateStats', joy: -SMALL, money: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -62,6 +72,7 @@ export default [
         name: 'Niet zeuren',
         actions: [
           { type: 'updateStats', joy: -SMALL, money: MEDIUM },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -69,6 +80,7 @@ export default [
         name: 'Blijf thuis',
         actions: [
           { type: 'updateStats', money: -MEDIUM, energy: SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -83,12 +95,17 @@ export default [
         name: 'Praat moed in',
         actions: [
           { type: 'updateStats', energy: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
       {
         name: 'Niet nu',
-        actions: [{ type: 'updateStats', joy: -SMALL }, { type: 'nextCard' }],
+        actions: [
+          { type: 'updateStats', joy: -SMALL },
+          { type: 'incrementDay' },
+          { type: 'nextCard' },
+        ],
       },
     ],
   },
@@ -100,6 +117,7 @@ export default [
         name: 'Bel ANWB',
         actions: [
           { type: 'updateStats', money: -SMALL, energy: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -107,6 +125,7 @@ export default [
         name: 'Pak het OV',
         actions: [
           { type: 'updateStats', energy: -MEDIUM },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -120,6 +139,7 @@ export default [
         name: 'Blijf thuis',
         actions: [
           { type: 'updateStats', joy: MEDIUM, energy: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -127,6 +147,7 @@ export default [
         name: 'Eropuit!',
         actions: [
           { type: 'updateStats', joy: MEDIUM, money: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -138,12 +159,17 @@ export default [
     choices: [
       {
         name: 'Laat haar winnen',
-        actions: [{ type: 'updateStats', joy: SMALL }, { type: 'nextCard' }],
+        actions: [
+          { type: 'updateStats', joy: SMALL },
+          { type: 'incrementDay' },
+          { type: 'nextCard' },
+        ],
       },
       {
         name: 'Ze gaat eraan',
         actions: [
           { type: 'updateStats', joy: -SMALL, energy: SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -157,6 +183,7 @@ export default [
         name: 'Niet zeuren',
         actions: [
           { type: 'updateStats', joy: -SMALL, energy: MEDIUM },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -164,6 +191,7 @@ export default [
         name: 'Sla over',
         actions: [
           { type: 'updateStats', energy: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -189,6 +217,7 @@ export default [
         name: 'Berend',
         actions: [
           { type: 'updateStats', joy: SMALL, energy: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -196,6 +225,7 @@ export default [
         name: 'Christine',
         actions: [
           { type: 'updateStats', joy: MEDIUM, energy: -MEDIUM },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -209,6 +239,7 @@ export default [
         name: 'Affligem Blond (6,8%)',
         actions: [
           { type: 'updateStats', joy: SMALL, energy: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -216,6 +247,7 @@ export default [
         name: 'Rochefort 10 (11,3%)',
         actions: [
           { type: 'updateStats', joy: MEDIUM, energy: -MEDIUM },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -223,12 +255,14 @@ export default [
   },
   {
     id: 'defqon',
+    unique: true,
     description: 'Defqon komt eraan. Maar is dat wel verstandig?',
     choices: [
       {
         name: 'Misschien niet',
         actions: [
-          { type: 'updateStats', joy: -SMALL, money: SMALL },
+          { type: 'updateStats', joy: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -241,6 +275,7 @@ export default [
             energy: -LARGE,
             money: -LARGE,
           },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -254,6 +289,7 @@ export default [
         name: '31 december',
         actions: [
           { type: 'updateStats', joy: SMALL, money: SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },
@@ -261,6 +297,29 @@ export default [
         name: '7 januari',
         actions: [
           { type: 'updateStats', joy: -SMALL, money: MEDIUM },
+          { type: 'incrementDay' },
+          { type: 'nextCard' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'poopyDiaper',
+    description: 'Rosa en Jonas zijn op bezoek. Dan begint het te stinken…',
+    choices: [
+      {
+        name: 'Zeg niks',
+        actions: [
+          { type: 'updateStats', joy: SMALL },
+          { type: 'incrementDay' },
+          { type: 'nextCard' },
+        ],
+      },
+      {
+        name: '"Ik doe het wel!"',
+        actions: [
+          { type: 'updateStats', joy: -SMALL, energy: -SMALL },
+          { type: 'incrementDay' },
           { type: 'nextCard' },
         ],
       },

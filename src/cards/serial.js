@@ -57,11 +57,19 @@ export default [
       choices: [
         {
           name: 'Yes!',
-          actions: [{ type: 'updateStats', joy: LARGE }, { type: 'nextCard' }],
+          actions: [
+            { type: 'updateStats', joy: LARGE },
+            { type: 'incrementDay' },
+            { type: 'nextCard' },
+          ],
         },
         {
           name: 'Ok dan!',
-          actions: [{ type: 'updateStats', joy: LARGE }, { type: 'nextCard' }],
+          actions: [
+            { type: 'updateStats', joy: LARGE },
+            { type: 'incrementDay' },
+            { type: 'nextCard' },
+          ],
         },
       ],
     },
@@ -78,7 +86,7 @@ export default [
         },
         {
           name: 'Wel alcoholvrij',
-          actions: [{ type: 'nextCard' }],
+          actions: [{ type: 'incrementDay' }, { type: 'nextCard' }],
         },
       ],
     },
@@ -96,7 +104,7 @@ export default [
         },
         {
           name: 'Nee, mooi geweest',
-          actions: [{ type: 'nextCard' }],
+          actions: [{ type: 'incrementDay' }, { type: 'nextCard' }],
         },
       ],
     },
@@ -114,7 +122,7 @@ export default [
         },
         {
           name: 'Hm, nee',
-          actions: [{ type: 'nextCard' }],
+          actions: [{ type: 'incrementDay' }, { type: 'nextCard' }],
         },
       ],
     },
@@ -132,7 +140,7 @@ export default [
         },
         {
           name: 'Pff, nee naar huis',
-          actions: [{ type: 'nextCard' }],
+          actions: [{ type: 'incrementDay' }, { type: 'nextCard' }],
         },
       ],
     },
@@ -176,6 +184,7 @@ export default [
           name: '🤢',
           actions: [
             { type: 'updateStats', joy: -LARGE, energy: -LARGE },
+            { type: 'incrementDay' },
             { type: 'nextCard' },
           ],
         },
@@ -183,6 +192,7 @@ export default [
           name: '😴',
           actions: [
             { type: 'updateStats', joy: -LARGE, energy: -LARGE },
+            { type: 'incrementDay' },
             { type: 'nextCard' },
           ],
         },
